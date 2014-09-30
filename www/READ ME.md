@@ -11,3 +11,6 @@ README.md
 ファイル配置場所は/www/TEST_SPACE/
 
 5:53 FTPアップロードの準備
+つながらない
+
+6:03 windowsではアップロード可能。
