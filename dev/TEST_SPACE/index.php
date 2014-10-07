@@ -4,7 +4,7 @@
 <html data-wf-site="540861d86996865637ef2410" data-wf-page="540861d86996865637ef2412">
 <head>
   <meta charset="utf-8">
-  <title>orage.house</title>
+  <title>Sinsekai</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="Webflow">
   <link rel="stylesheet" type="text/css" href="css/normalize.css">
@@ -34,7 +34,7 @@
       <div class="w-row">
         <div class="w-col w-col-4 brand-column">
           <img class="logo" src="images/1-logo.png" width="41px" alt="56173961-991d-4ed7-8529-a235d3aabaf6_1-logo.png">
-          <div class="company">Sinsekai</div>
+          <div class="company">新世界</div>
         </div>
         <nav class="w-col w-col-8 nav-column"><a class="nav-link" href="#features">Features</a>
         </nav>
@@ -43,14 +43,14 @@
   </header>
   <div class="section hero">
     <div class="w-container">
-      <h1 class="hero-heading">Welcom Orange House Photo Album</h1>
-      <p class="hero-subhead">新世界用フォトアルバムです./yukinori/stamp/.</p>
+      <h1 class="hero-heading">Welcom Shinsekai Photo Album</h1>
+      <p class="hero-subhead">新世界用フォトアルバム</p>
       
       <div class="button-group">
         <!-- <a class="button sign-up" href="#">upload</a> -->
-      <!-- <form action="post.php" enctype="multipart/form-data" method="post"> -->
-        <!-- <input class="button " type="file" name="photo" accept="image/*; capture=camera"> -->
-        <!-- <input class="button sign-up" type="submit" value="UPLOAD"> -->
+      <form action="post.php" enctype="multipart/form-data" method="post">
+        <input class="button " type="file" name="photo" accept="image/*; capture=camera">
+        <input class="button sign-up" type="submit" value="UPLOAD">
       </form>
 
 
@@ -93,7 +93,7 @@ while($file_name = $array[$i]){
 // 2. サムネイル表示
 //
 /**********************************************************/
-$j=0;
+$j=99;
 while($temp = $array[$j]) {
   
   echo '<div class="section" id="mobile"><div class="w-container photo-con"><div class="w-row">';
@@ -119,6 +119,34 @@ while($temp = $array[$j]) {
     ';
   }
 
+  echo '</div></div></div>';
+}
+?>
+
+<!-- lightbox -->
+<?php
+/**********************************************************
+/ lightboxを使ってみる
+/**********************************************************/
+$j=0;
+while($temp = $array[$j]) {
+  
+  echo '<div class="section" id="mobile">
+  <div class="w-container photo-con">
+  <div class="w-row">';
+
+  echo '
+  <div class="w-col w-col-3">
+    <a href="./img/'.$array[$j].' " data-lightbox="roadtrip"><img src="./img/'.$array[$j++].' " ></a></div>
+  <div class="w-col w-col-3">
+    <a href="./img/'.$array[$j].' " data-lightbox="roadtrip"><img src="./img/'.$array[$j++].' " ></a></div>
+  <div class="w-col w-col-3">
+    <a href="./img/'.$array[$j].' " data-lightbox="roadtrip"><img src="./img/'.$array[$j++].' " ></a></div>
+  <div class="w-col w-col-3">
+    <a href="./img/'.$array[$j].' " data-lightbox="roadtrip"><img src="./img/'.$array[$j++].' " ></a></div>
+
+  ';
+  // <img class="photo-img" src=" '."./img/".$array[$j++].' " alt=" '.$array[$j].' ">
   echo '</div></div></div>';
 }
 ?>
