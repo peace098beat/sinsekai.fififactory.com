@@ -65,14 +65,20 @@ body{
 	<!-- header -->
 	<?php require("header.php"); ?>
 
+<?php
+
+?>
+
+<div class="container">
+	<p>複数フォーム</p>
 	<!-- 入力フォーム php -->
 	<form class="form" role="form" action="post.php" enctype="multipart/form-data" method="post">
 		<div class="form-group">
-        <input class="button " type="file" name="upfile" accept="image/*; capture=camera, video/*; capture=camera">
+        <input class="button " type="file" name="upfile[]" accept="image/*; capture=camera, video/*; capture=camera" multiple>
 			<input class="button sign-up" type="submit" value="UPLOAD">
 		</div>
 	</form>
-
+</div>
 
 
 	<!-- hello -->
@@ -103,7 +109,7 @@ body{
 				</div>
 				';
 				$html = vsprintf($thtml, $i);
-				echo $html;
+				// echo $html;
 			}
 			?>
 		</div>

@@ -9,13 +9,13 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">Brand</a>
+						<a class="navbar-brand" href="http://shinsekai.fififactory.com/dev/asagiri-jam/index.php">Brand</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
-								<li class="active"><a href="#">Link</a></li>
+								<li class="active"><a href="http://shinsekai.fififactory.com/dev/asagiri-jam/Grid-A-Licious.php">G-A-L</a></li>
 								<li><a href="#">Link</a></li>
 								<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
