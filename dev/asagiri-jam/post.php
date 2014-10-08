@@ -1,11 +1,19 @@
 <?php
+
+
+//テーブル名 (ハイフン"-"は使用不可)
+$TBNAME = "asagiridev";
+// データベースの初期化
+// tbclear($TBNAME);
+// データベースへ接続
+$conn = init();
+
+
 /**********************************************************
 / アップロードファイルの保存
 /**********************************************************/
 // header("Content-Type: text/html; charset=UTF-8");
 // 文字コードの設定
-
-// print_r($_FILES);
 
 // 複数ファイルに対応
 $file_n = count($_FILES["upfile"]["tmp_name"]);
@@ -19,6 +27,12 @@ for ($i=0; $i < $file_n; $i++) {
 	  	// ファイルのパーミッションを変更
 	    chmod($fname, 0644);
 	    // echo $_FILES["upfile"]["name"] . "をアップロードしました。";
+
+	    $url = $fname;
+	    // $memo = sprintf($_FILES["upfile"]);
+	    $dt = date("Y/m/d H:i:s");
+
+	    add_data($conn, $url, $memo, $dt);
 	  } else {
 	    // echo "<p>ファイルをアップロードできませんでした。</p>";
 	  }
@@ -30,14 +44,7 @@ for ($i=0; $i < $file_n; $i++) {
 /**********************************************************
 / データベースへの保存
 /**********************************************************/
-//テーブル名 (ハイフン"-"は使用不可)
-$TBNAME = "asagiridev";
 
-// データベースの初期化
-tbclear($TBNAME);
-
-// データベースへ接続
-$conn = init();
 
 // データベースの初期設定 
 function init() {
@@ -67,35 +74,37 @@ function tbclear($TBNAME){
 	try{
 	$sql="DROP TABLE ".$TBNAME;
 	$stmt = $conn->prepare($sql);
-	$stmt->execute();
+	if(!$stmt->execute()){echo "DB削除に失敗";}
+
+
 	}catch(PDOException $e){
 		print('Error:'.$e->getMessage());
 		die();
 	}
 
-
 	$sql="CREATE TABLE IF NOT EXISTS ".$TBNAME."(
 		id INTEGER PRIMARY KEY AUTO_INCREMENT,
-		user VARCHAR(50) NOT NULL,
-		publishd VARCHAR(50) NOT NULL,
-		story VARCHAR(50) ,
-		plan VARCHAR(50) ,
+		URL VARCHAR(50) NOT NULL,
 		memo TEXT,
-		ordmaild VARCHAR(50) ,
-		phogetd VARCHAR(50) ,
-		scand VARCHAR(50) ,
-		mkvideod VARCHAR(50) ,
-		mkdvdd VARCHAR(50) ,
-		postd VARCHAR(50) ,
-		deliverd VARCHAR(50) ,
 		dt DATETIME
 	)";
 	$stmt = $conn->prepare($sql);
-	$stmt->execute();
+	if(!$stmt->execute()){echo "新規作成に失敗";}
 	$conn = null;
 }
 
-
+// データの追加
+function add_data($conn, $url, $memo, $dt) {
+	global $TBNAME;
+    $sql = "INSERT INTO ".$TBNAME. "(url, memo, dt) VALUES(:url, :memo, :dt)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(":url", $url);
+    $stmt->bindParam(":memo", $memo);
+    $stmt->bindParam(":dt", $dt);
+	if(!$stmt->execute()){echo "要素の追加に失敗";}
+    $id = $conn->lastInsertId();
+    return $id;
+}
 
 // $link1 = "http://shinsekai.fififactory.com/dev/asagiri-jam/index.php";
 // $link2 = "http://shinsekai.fififactory.com/dev/asagiri-jam/Grid-A-Licious.php";
