@@ -47,6 +47,9 @@ body{
 </style>
 <body class="bg-img">
 
+	<!-- header -->
+	<?php require("header.php"); ?>
+
 <!-- header -->
 <div  id="signin-space" class="container">
 	<form  class="form-signin" role="form" method="POST" action="<?php echo "index.php" ?>">
