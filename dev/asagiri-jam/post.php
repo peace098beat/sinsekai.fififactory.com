@@ -23,21 +23,23 @@ for ($i=0; $i < $file_n; $i++) {
 		// 保存するファイル名
 		$fname_t = "./updata/".time()."%02d"."-".$_FILES["upfile"]["name"][$i];
 		$fname = sprintf($fname_t, $i);
+
 	  if (move_uploaded_file($_FILES["upfile"]["tmp_name"][$i], $fname)) {
 	  	// ファイルのパーミッションを変更
 	    chmod($fname, 0644);
-	    // echo $_FILES["upfile"]["name"] . "をアップロードしました。";
+	    echo $_FILES["upfile"]["name"] . "をアップロードしました。";
 
 	    $url = $fname;
 	    // $memo = sprintf($_FILES["upfile"]);
 	    $dt = date("Y/m/d H:i:s");
 
 	    add_data($conn, $url, $memo, $dt);
+	    
 	  } else {
-	    // echo "<p>ファイルをアップロードできませんでした。</p>";
+	    echo "<p>ファイルをアップロードできませんでした。</p>";
 	  }
 	} else {
-	  // echo "<p>ファイルが選択されていません。";
+	  echo "<p>ファイルが選択されていません。";
 	}
 }
 
@@ -46,6 +48,14 @@ for ($i=0; $i < $file_n; $i++) {
 /**********************************************************/
 
 
+
+
+/**********************************************************
+/ サブルーチン
+* init()
+* tbclear()
+* add_data()
+/**********************************************************/
 // データベースの初期設定 
 function init() {
 		// データベースに接続
